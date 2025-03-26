@@ -8,7 +8,9 @@ import NutritionHistory from "@/components/NutritionHistory";
 import AddMealButton from "@/components/AddMealButton";
 import { DailyData } from "@shared/schema";
 import { formatDate, getToday } from "@/lib/dateUtils";
-import { CalendarDays, ArrowLeft, ArrowRight, UtensilsCrossed, BarChart } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { exportDailyDataAsHtml } from "@/lib/exportUtils";
+import { CalendarDays, ArrowLeft, ArrowRight, UtensilsCrossed, BarChart, FileDown } from "lucide-react";
 
 export default function Home() {
   const [selectedDate, setSelectedDate] = useState<string>(getToday());
@@ -72,37 +74,53 @@ export default function Home() {
       
       <main className="flex-grow overflow-auto pb-16 md:pb-0 md:pt-0">
         <div className="container mx-auto p-4">
-          {/* Date navigation */}
-          <div className="flex justify-between items-center mb-6 bg-white p-3 rounded-lg shadow-sm border border-gray-100">
-            <button 
-              onClick={goToPreviousDay}
-              className="p-2 rounded-full hover:bg-gray-100 text-gray-600 transition-colors"
-              aria-label="Previous day"
-            >
-              <ArrowLeft className="h-5 w-5" />
-            </button>
-            
-            <div className="flex flex-col items-center">
-              <h2 className="text-lg font-semibold text-gray-800">{displayDate}</h2>
-              {!isToday && (
-                <button 
-                  onClick={goToToday}
-                  className="flex items-center text-xs text-primary mt-1 hover:underline"
-                >
-                  <CalendarDays className="h-3 w-3 mr-1" />
-                  Jump to Today
-                </button>
-              )}
+          {/* Date navigation and export button */}
+          <div className="flex flex-col md:flex-row justify-between items-center mb-6">
+            <div className="flex justify-between items-center w-full md:w-auto bg-white p-3 rounded-lg shadow-sm border border-gray-100 mb-3 md:mb-0">
+              <button 
+                onClick={goToPreviousDay}
+                className="p-2 rounded-full hover:bg-gray-100 text-gray-600 transition-colors"
+                aria-label="Previous day"
+              >
+                <ArrowLeft className="h-5 w-5" />
+              </button>
+              
+              <div className="flex flex-col items-center mx-4">
+                <h2 className="text-lg font-semibold text-gray-800">{displayDate}</h2>
+                {!isToday && (
+                  <button 
+                    onClick={goToToday}
+                    className="flex items-center text-xs text-primary mt-1 hover:underline"
+                  >
+                    <CalendarDays className="h-3 w-3 mr-1" />
+                    Jump to Today
+                  </button>
+                )}
+              </div>
+              
+              <button 
+                onClick={goToNextDay}
+                className={`p-2 rounded-full hover:bg-gray-100 transition-colors ${new Date(selectedDate) >= new Date(getToday()) ? 'text-gray-300 cursor-not-allowed' : 'text-gray-600'}`}
+                aria-label="Next day"
+                disabled={new Date(selectedDate) >= new Date(getToday())}
+              >
+                <ArrowRight className="h-5 w-5" />
+              </button>
             </div>
             
-            <button 
-              onClick={goToNextDay}
-              className={`p-2 rounded-full hover:bg-gray-100 transition-colors ${new Date(selectedDate) >= new Date(getToday()) ? 'text-gray-300 cursor-not-allowed' : 'text-gray-600'}`}
-              aria-label="Next day"
-              disabled={new Date(selectedDate) >= new Date(getToday())}
-            >
-              <ArrowRight className="h-5 w-5" />
-            </button>
+            {!isLoading && !isError && dailyData && (
+              <Button
+                variant="outline"
+                className="w-full md:w-auto border-primary text-primary hover:bg-primary/5"
+                onClick={() => {
+                  const formattedDate = formatDate(selectedDate, { year: 'numeric', month: 'short', day: 'numeric' });
+                  exportDailyDataAsHtml(dailyData, `nutrition-report-${formattedDate}.html`);
+                }}
+              >
+                <FileDown className="h-4 w-4 mr-2" />
+                Export as HTML
+              </Button>
+            )}
           </div>
         
           {isLoading ? (

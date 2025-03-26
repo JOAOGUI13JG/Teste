@@ -6,36 +6,57 @@ interface FooterProps {
 }
 
 export default function Footer({ activePage }: FooterProps) {
+  // Fix the nested a tags issue by using div instead of a for the Link wrapper
   return (
-    <footer className="bg-white border-t border-gray-200 fixed bottom-0 w-full md:static">
+    <footer className="bg-white border-t border-gray-200 fixed bottom-0 w-full md:static shadow-lg">
       <div className="container mx-auto">
         <div className="flex justify-around items-center h-16 px-4 md:px-0">
           <Link href="/">
-            <a className={`flex flex-col items-center ${activePage === "home" ? "text-primary" : "text-gray-500 hover:text-primary"}`}>
-              <Home className="h-5 w-5" />
+            <div className={`flex flex-col items-center cursor-pointer ${activePage === "home" 
+              ? "text-primary font-medium" 
+              : "text-gray-500 hover:text-primary"}`}
+            >
+              <div className={`p-1.5 rounded-lg ${activePage === "home" ? "bg-primary/10" : ""}`}>
+                <Home className="h-5 w-5" />
+              </div>
               <span className="text-xs mt-1">Home</span>
-            </a>
+            </div>
           </Link>
           
           <Link href="/search">
-            <a className={`flex flex-col items-center ${activePage === "search" ? "text-primary" : "text-gray-500 hover:text-primary"}`}>
-              <Search className="h-5 w-5" />
+            <div className={`flex flex-col items-center cursor-pointer ${activePage === "search" 
+              ? "text-primary font-medium" 
+              : "text-gray-500 hover:text-primary"}`}
+            >
+              <div className={`p-1.5 rounded-lg ${activePage === "search" ? "bg-primary/10" : ""}`}>
+                <Search className="h-5 w-5" />
+              </div>
               <span className="text-xs mt-1">Search</span>
-            </a>
+            </div>
           </Link>
           
           <Link href="/reports">
-            <a className={`flex flex-col items-center ${activePage === "reports" ? "text-primary" : "text-gray-500 hover:text-primary"}`}>
-              <BarChart2 className="h-5 w-5" />
+            <div className={`flex flex-col items-center cursor-pointer ${activePage === "reports" 
+              ? "text-primary font-medium" 
+              : "text-gray-500 hover:text-primary"}`}
+            >
+              <div className={`p-1.5 rounded-lg ${activePage === "reports" ? "bg-primary/10" : ""}`}>
+                <BarChart2 className="h-5 w-5" />
+              </div>
               <span className="text-xs mt-1">Reports</span>
-            </a>
+            </div>
           </Link>
           
           <Link href="/settings">
-            <a className={`flex flex-col items-center ${activePage === "settings" ? "text-primary" : "text-gray-500 hover:text-primary"}`}>
-              <Settings className="h-5 w-5" />
+            <div className={`flex flex-col items-center cursor-pointer ${activePage === "settings" 
+              ? "text-primary font-medium" 
+              : "text-gray-500 hover:text-primary"}`}
+            >
+              <div className={`p-1.5 rounded-lg ${activePage === "settings" ? "bg-primary/10" : ""}`}>
+                <Settings className="h-5 w-5" />
+              </div>
               <span className="text-xs mt-1">Settings</span>
-            </a>
+            </div>
           </Link>
         </div>
       </div>

@@ -30,7 +30,9 @@ export default function MealCard({ meal, userId, borderColorClass = "border-prim
       return (
         <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 4v2a4 4 0 1 0 8 0V4m0 10v.01M6 14v.01M12 18.5v1.5m-8 0h16" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8V6c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2v2" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8h18v10c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2V8z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15a2 2 0 100-4 2 2 0 000 4z" />
           </svg>
         </div>
       );
@@ -38,7 +40,10 @@ export default function MealCard({ meal, userId, borderColorClass = "border-prim
       return (
         <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mr-3">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6h18M3 12h18M3 18h18" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6h18l-2 14H5L3 6z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10c2.5 0 2.5 2 5 2 2 0 3-1 3-1" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10c-2.5 0-2.5 2-5 2-2 0-3-1-3-1" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v7" />
           </svg>
         </div>
       );
@@ -48,11 +53,22 @@ export default function MealCard({ meal, userId, borderColorClass = "border-prim
           <UtensilsCrossed className="h-4 w-4 text-blue-600" />
         </div>
       );
-    } else {
+    } else if (name.includes('snack')) {
       return (
         <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center mr-3">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7h16M5 7v12a2 2 0 002 2h10a2 2 0 002-2V7" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v4M15 3v4" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12a1 1 0 100-2 1 1 0 000 2zM12 12a1 1 0 100-2 1 1 0 000 2zM16 12a1 1 0 100-2 1 1 0 000 2zM8 16a1 1 0 100-2 1 1 0 000 2zM12 16a1 1 0 100-2 1 1 0 000 2zM16 16a1 1 0 100-2 1 1 0 000 2z" />
+          </svg>
+        </div>
+      );
+    } else {
+      // For any other meal type
+      return (
+        <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center mr-3">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
           </svg>
         </div>
       );

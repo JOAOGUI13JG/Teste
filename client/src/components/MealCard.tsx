@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MealWithItems } from "@shared/schema";
-import { ChevronDown, ChevronUp, Plus, Clock, UtensilsCrossed } from "lucide-react";
+import { ChevronDown, ChevronUp, Plus, Clock, UtensilsCrossed, History, Star } from "lucide-react";
+import { useRecentFoods } from "@/hooks/useRecentFoods";
 import FoodItemRow from "./FoodItemRow";
 import AddFoodDialog from "./AddFoodDialog";
 import { cn } from "@/lib/utils";

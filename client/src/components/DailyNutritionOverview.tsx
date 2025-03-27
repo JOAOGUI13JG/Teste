@@ -35,7 +35,7 @@ export default function DailyNutritionOverview({ totals, targets }: DailyNutriti
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm p-4 mb-4 border border-gray-50">
+    <div className="bg-white rounded-lg shadow-md p-5 mb-6 border border-gray-100">
       <h2 className="text-lg font-semibold mb-4 flex items-center text-primary">
         <Flame className="mr-2 h-5 w-5" />
         Daily Summary

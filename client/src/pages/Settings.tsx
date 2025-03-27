@@ -186,11 +186,11 @@ export default function Settings() {
           
           <Card>
             <CardHeader>
-              <CardTitle>About CalTrack</CardTitle>
+              <CardTitle>About Fit Balance</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-500 mb-4">
-                CalTrack is a nutrition tracking application to help you monitor your daily food intake and reach your nutrition goals.
+                Fit Balance is a nutrition tracking application to help you monitor your daily food intake and reach your nutrition goals.
               </p>
               <p className="text-gray-500">
                 Version 1.0.0
